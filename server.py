@@ -20,8 +20,12 @@ def emotion_detect():
     dominant_emo = response['dominant_emotion']
 
     # Generate and return the response
-    response_out = f"For the given statement, the system response is 'anger': {anger_score}, 'disgust': {disgust_score}, 'fear': {fear_score}, 'joy': {joy_score} and 'sadness': {sadness_score}. The dominant emotion is {dominant_emo}."
-    return response_out
+    # Includes error handling for blank entries
+    if dominant_emo is None:
+        return "Invalir text! Pleaase try again!"
+    else:
+        response_out = f"For the given statement, the system response is 'anger': {anger_score}, 'disgust': {disgust_score}, 'fear': {fear_score}, 'joy': {joy_score} and 'sadness': {sadness_score}. The dominant emotion is {dominant_emo}."
+        return response_out
 
 @app.route("/")
 def render_index_page():
